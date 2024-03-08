@@ -3,7 +3,15 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import logo from "../logo.svg";
 
-const Navbar = () => {
+const Navbar = ({
+  userIsLoggedIn,
+  handleLogout,
+}: {
+  userIsLoggedIn: boolean;
+  handleLogout: () => void;
+}) => {
+  console.log(userIsLoggedIn);
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -13,9 +21,15 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-right">
-        <Link to="/login" className="list">
-          Mon compte
-        </Link>
+        {!userIsLoggedIn ? (
+          <Link to="/login" className="list">
+            Mon compte
+          </Link>
+        ) : (
+          <Link to="/" onClick={handleLogout} className="list">
+            Se déconnecter
+          </Link>
+        )}
         <Link to="/cart" className="list">
           Mon panier
         </Link>
