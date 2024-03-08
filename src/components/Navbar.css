@@ -1,0 +1,29 @@
+.logo {
+  height: 8vmin;
+  margin: 2vmin;
+  pointer-events: none;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(10px + 2vmin);
+  background-color: hsl(0 0% 100%/30%);
+  color: rgb(0, 16, 24);
+  gap: 2vmin;
+  font-weight: bold;
+  border-bottom: 0.1rem solid rgb(239, 241, 243);
+  padding-inline: 1.6rem;
+}
+
+.navbar-right {
+  display: flex;
+  gap: 2vmin;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
