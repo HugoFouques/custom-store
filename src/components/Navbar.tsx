@@ -10,8 +10,6 @@ const Navbar = ({
   userIsLoggedIn: boolean;
   handleLogout: () => void;
 }) => {
-  console.log(userIsLoggedIn);
-
   return (
     <nav className="navbar">
       <div className="navbar-left">

@@ -1,0 +1,19 @@
+.star-rating {
+  display: flex;
+  align-items: center;
+}
+
+.star-rating img {
+  width: 24px; 
+  height: 24px;
+  margin-right: 4px;
+}
+
+.star-rating .filled {
+  fill: gold;
+  color: gold
+}
+
+.star-rating .empty {
+  fill: #ccc;
+}
