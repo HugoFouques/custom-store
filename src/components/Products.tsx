@@ -3,15 +3,18 @@ import "./Products.css";
 import chevronRight from "../icons/chevron-right.svg";
 import checkbox from "../icons/checkbox.svg";
 import box from "../icons/box.svg";
-import Product from "../types/Product";
+import { Product, CartItem } from "../types/Product";
 import StarRating from "./StarRating";
+import { Operation } from "../types/Operation";
 
 const Products = ({
   products,
   categories,
+  handleAddToCart,
 }: {
   products: Product[];
   categories: string[];
+  handleAddToCart: (itemId: number, operation: Operation) => void;
 }) => {
   const [displayedProducts, setDisplayedProduct] = useState<Product[]>([]);
   const [displayedCategories, setDisplayedCategories] = useState<string[]>([]);
@@ -87,7 +90,12 @@ const Products = ({
               <div className="product-price">{product.price}€</div>
               <h4 className="product-name">{product.title}</h4>
               <StarRating rating={product.rating} />
-              <button className="add-to-cart">Ajouter au panier</button>
+              <button
+                className="add-to-cart"
+                onClick={() => handleAddToCart(product.id, "Add")}
+              >
+                Ajouter au panier
+              </button>
             </div>
           ))}
         </ul>

@@ -2,14 +2,22 @@ import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import logo from "../logo.svg";
+import { CartItem } from "../types/Product";
 
 const Navbar = ({
   userIsLoggedIn,
+  cartItems,
   handleLogout,
 }: {
   userIsLoggedIn: boolean;
+  cartItems: CartItem[];
   handleLogout: () => void;
 }) => {
+  const totalItemsInCart = cartItems.reduce(
+    (acc, cur) => acc + cur.quantity,
+    0
+  );
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -29,7 +37,7 @@ const Navbar = ({
           </Link>
         )}
         <Link to="/cart" className="list">
-          Mon panier
+          Mon panier ({totalItemsInCart})
         </Link>
       </div>
     </nav>
