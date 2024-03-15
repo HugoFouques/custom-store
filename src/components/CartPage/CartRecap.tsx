@@ -1,18 +1,24 @@
 import { displayPrice } from "../../helpers/price";
-import CheckoutButton from "../CheckoutButton";
+import CheckoutButton from "./CheckoutButton";
+import { CheckoutStep, getStepIndex } from "../../types/CheckoutStep";
 
 import "./CartRecap.css";
 
 const CartRecap = ({
   totalItems,
   totalPrice,
+  currentStep,
+  handlePayment,
   handleGoToNextStep,
 }: {
   totalItems: number;
   totalPrice: number;
+  currentStep: CheckoutStep;
+  handlePayment: () => void;
   handleGoToNextStep: () => void;
 }) => {
   const isEmpty = totalItems === 0;
+  const isPaymentStep = getStepIndex(currentStep) === 3;
 
   return (
     <div className="cart-recap">
@@ -37,10 +43,18 @@ const CartRecap = ({
             <span>Total (TVA incluse)</span>
             <span>{displayPrice(totalPrice)}</span>
           </div>
-          <CheckoutButton
-            disabled={isEmpty}
-            handleGoToNextStep={handleGoToNextStep}
-          />
+          {isPaymentStep ? (
+            <CheckoutButton
+              text={"Procéder au paiment"}
+              onClick={handlePayment}
+            />
+          ) : (
+            <CheckoutButton
+              text={"Poursuivre la commande"}
+              disabled={isEmpty}
+              onClick={handleGoToNextStep}
+            />
+          )}
         </div>
       </div>
     </div>

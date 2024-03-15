@@ -17,6 +17,7 @@ const CartPage = ({
   handleCartItemOperation,
   handleRemoveFromCart,
   handleGoToNextStep,
+  handlePayment,
 }: {
   cartItems: CartItem[];
   currentStep: CheckoutStep;
@@ -24,6 +25,7 @@ const CartPage = ({
   handleCartItemOperation: (id: number, operation: Operation) => void;
   handleRemoveFromCart: (id: number) => void;
   handleGoToNextStep: () => void;
+  handlePayment: () => void;
 }) => {
   const totalItemsInCart = cartItems.reduce(
     (acc, cur) => acc + cur.quantity,
@@ -53,7 +55,9 @@ const CartPage = ({
         <CartRecap
           totalItems={totalItemsInCart}
           totalPrice={totalPriceInCart}
+          currentStep={currentStep}
           handleGoToNextStep={handleGoToNextStep}
+          handlePayment={handlePayment}
         />
       </div>
     </div>

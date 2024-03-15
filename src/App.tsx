@@ -128,6 +128,11 @@ const App = () => {
     setCartItems((prevCart) => prevCart.filter((item) => item.id !== itemId));
   };
 
+  const handlePayment = () => {
+    setCurrentCheckoutStep("Confirmed");
+    navigate("/invoice");
+  };
+
   return (
     <div className="container">
       <Navbar
@@ -159,6 +164,7 @@ const App = () => {
               handleCartItemOperation={handleCartItemOperation}
               handleRemoveFromCart={handleRemoveFromCart}
               handleGoToNextStep={handleGoToNextStep}
+              handlePayment={handlePayment}
             />
           }
         />

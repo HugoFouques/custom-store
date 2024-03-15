@@ -1,20 +1,22 @@
 import "./CheckoutButton.css";
 
 const CheckoutButton = ({
+  text,
   disabled,
-  handleGoToNextStep,
+  onClick,
 }: {
-  disabled: boolean;
-  handleGoToNextStep: () => void;
+  text: string;
+  disabled?: boolean;
+  onClick: () => void;
 }) => {
   return (
     <div>
       <button
         className="go-to-next-step-button"
-        onClick={() => handleGoToNextStep()}
+        onClick={() => onClick()}
         disabled={disabled}
       >
-        Poursuivre la commande
+        {text}
       </button>
     </div>
   );
