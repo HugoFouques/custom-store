@@ -1,0 +1,20 @@
+.go-to-next-step-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(54, 67, 186);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 1rem 1.4rem;
+  margin-top: 2rem;
+  border-radius: 4px;
+  white-space: nowrap;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+    box-shadow: none;
+  }
+}

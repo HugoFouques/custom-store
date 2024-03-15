@@ -3,14 +3,13 @@ import "./ProgressLabel.css";
 const ProgressLabel = ({
   index,
   title,
-  currentStep,
+  isActive,
 }: {
   index: number;
   title: string;
-  currentStep: number;
+  isActive: boolean;
 }) => {
-  const hasBeenReach = currentStep >= index;
-  const activeClass = hasBeenReach ? "active" : "";
+  const activeClass = isActive ? "active" : "";
 
   return (
     <div className="progress-label">

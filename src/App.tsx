@@ -4,12 +4,13 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Products from "./components/Products";
 import ProductDetails from "./components/ProductDetails";
-import Cart from "./components/Cart";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import { useEffect, useState } from "react";
 import { Product, CartItem } from "./types/Product";
 import { Operation } from "./types/Operation";
+import { CheckoutStep, getNextStep } from "./types/CheckoutStep";
+import CartPage from "./components/CartPage";
 
 const App = () => {
   const navigate = useNavigate();
@@ -17,6 +18,8 @@ const App = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [currentCheckoutStep, setCurrentCheckoutStep] =
+    useState<CheckoutStep>("LoggedOut");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -48,12 +51,22 @@ const App = () => {
   const handleLogin = (token: string): void => {
     localStorage.setItem("authToken", token);
     setUserIsLoggedIn(true);
+    setCurrentCheckoutStep("LoggedIn");
     navigate("/");
   };
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     setUserIsLoggedIn(false);
+    setCurrentCheckoutStep("LoggedOut");
+  };
+
+  const handleGoToNextStep = () => {
+    if (userIsLoggedIn) {
+      const nextStep = getNextStep(currentCheckoutStep);
+
+      setCurrentCheckoutStep(nextStep);
+    }
   };
 
   const handleCartItemOperation = (itemId: number, operation: Operation) => {
@@ -112,10 +125,12 @@ const App = () => {
         <Route
           path="/cart"
           element={
-            <Cart
+            <CartPage
               cartItems={cartItems}
+              currentStep={currentCheckoutStep}
               handleCartItemOperation={handleCartItemOperation}
               handleRemoveFromCart={handleRemoveFromCart}
+              handleGoToNextStep={handleGoToNextStep}
             />
           }
         />

@@ -1,0 +1,42 @@
+.cart-recap {
+  width: 25%;
+}
+
+.recap-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem;
+  padding: 1rem;
+  padding-bottom: 3rem;
+}
+
+.recap-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+}
+
+.divider {
+  margin: 1rem auto;
+  width: 80%;
+}
+
+.recap-shipping {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.recap-shipping-card {
+  background-color: rgb(245, 244, 245);
+  padding: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.recap-total {
+  display: flex;
+  justify-content: space-between;
+}

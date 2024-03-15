@@ -1,0 +1,11 @@
+.cart-container {
+  margin: auto;
+  max-width: 75rem;
+}
+
+.cart-details {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.4rem;
+}
+

@@ -3,7 +3,7 @@ import "./Products.css";
 import chevronRight from "../icons/chevron-right.svg";
 import checkbox from "../icons/checkbox.svg";
 import box from "../icons/box.svg";
-import { Product, CartItem } from "../types/Product";
+import { Product } from "../types/Product";
 import StarRating from "./StarRating";
 import { Operation } from "../types/Operation";
 
