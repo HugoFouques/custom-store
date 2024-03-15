@@ -12,6 +12,7 @@ import { CheckoutStep, getNextStep } from "./types/CheckoutStep";
 import CartPage from "./components/CartPage";
 import { User } from "./types/User";
 import InvoicePage from "./components/InvoicePage";
+import { generateInvoice } from "./helpers/invoice";
 
 const App = () => {
   const navigate = useNavigate();
@@ -133,6 +134,20 @@ const App = () => {
     navigate("/invoice");
   };
 
+  const handleDownload = () => {
+    if (user && cartItems.length !== 0) {
+      const invoice = generateInvoice(user, cartItems);
+
+      invoice.save("Facture Custom Store.pdf");
+    }
+  };
+
+  const handleFinish = () => {
+    setCartItems([]);
+    setCurrentCheckoutStep("LoggedIn");
+    navigate("/");
+  };
+
   return (
     <div className="container">
       <Navbar
@@ -169,7 +184,12 @@ const App = () => {
           }
         />
         <Route path="/login" element={<Login handleLogin={handleLogin} />} />
-        <Route path="/invoice" Component={InvoicePage} />
+        <Route
+          path="/invoice"
+          element={
+            <InvoicePage onDownload={handleDownload} onFinish={handleFinish} />
+          }
+        />
       </Routes>
     </div>
   );

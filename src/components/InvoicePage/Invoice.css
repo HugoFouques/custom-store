@@ -1,0 +1,33 @@
+.invoice-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.invoice-text {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border: 1px solid grey;
+}
+
+.invoice-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(54, 67, 186);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 1rem 1.4rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}

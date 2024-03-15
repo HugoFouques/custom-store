@@ -35,8 +35,7 @@ const CartRecap = ({
         <div className="recap-shipping">
           Livraison
           <div className="recap-shipping-card">
-            Les délais et frais de livraison sont calculés à l'étape suivante
-            après la connexion/inscription
+            La livraison est gratuite jusqu'à la fin du mois ! Profitez-en !
           </div>
           <hr className="divider" />
           <div className="recap-total">
