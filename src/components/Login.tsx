@@ -1,7 +1,11 @@
 import "./Login.css";
 import React, { FormEvent, useState } from "react";
 
-const Login = ({ handleLogin }: { handleLogin: (token: string) => void }) => {
+const Login = ({
+  handleLogin,
+}: {
+  handleLogin: (token: string, username: string) => void;
+}) => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [authError, setAuthError] = useState<string>("");
@@ -30,7 +34,7 @@ const Login = ({ handleLogin }: { handleLogin: (token: string) => void }) => {
       const data: { token: string } = await response.json();
       const token = data.token;
 
-      handleLogin(token);
+      handleLogin(token, username);
     } catch (error) {
       const defaultMsg = "Une erreur est survenue!";
       const msg = error instanceof Error ? error.message : defaultMsg;

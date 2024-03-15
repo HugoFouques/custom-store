@@ -11,10 +11,12 @@ import { Product, CartItem } from "./types/Product";
 import { Operation } from "./types/Operation";
 import { CheckoutStep, getNextStep } from "./types/CheckoutStep";
 import CartPage from "./components/CartPage";
+import { User } from "./types/User";
 
 const App = () => {
   const navigate = useNavigate();
-  const [userIsLoggedIn, setUserIsLoggedIn] = useState<boolean>(false);
+  const [username, setUsername] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -48,24 +50,49 @@ const App = () => {
     fetchCategories();
   }, []);
 
-  const handleLogin = (token: string): void => {
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const res = await fetch("https://fakestoreapi.com/users");
+        const data: User[] = await res.json();
+        const user = data.find((u) => u.username === username);
+
+        if (user !== undefined) {
+          setUser(user);
+        } else {
+          throw new Error("Utilisateur inconnu");
+        }
+      } catch (error) {
+        console.error("Error ;( : ", error);
+      }
+    };
+
+    if (username) {
+      fetchUserInfo();
+      console.log("User a changé");
+    }
+  }, [username]);
+
+  const handleLogin = (token: string, username: string): void => {
     localStorage.setItem("authToken", token);
-    setUserIsLoggedIn(true);
+    setUsername(username);
     setCurrentCheckoutStep("LoggedIn");
     navigate("/");
   };
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
-    setUserIsLoggedIn(false);
+    setUsername(null);
     setCurrentCheckoutStep("LoggedOut");
   };
 
   const handleGoToNextStep = () => {
-    if (userIsLoggedIn) {
+    if (username) {
       const nextStep = getNextStep(currentCheckoutStep);
 
       setCurrentCheckoutStep(nextStep);
+    } else {
+      navigate("/login");
     }
   };
 
@@ -104,7 +131,7 @@ const App = () => {
   return (
     <div className="container">
       <Navbar
-        userIsLoggedIn={userIsLoggedIn}
+        userIsLoggedIn={username !== null}
         cartItems={cartItems}
         handleLogout={handleLogout}
       />
@@ -128,6 +155,7 @@ const App = () => {
             <CartPage
               cartItems={cartItems}
               currentStep={currentCheckoutStep}
+              user={user}
               handleCartItemOperation={handleCartItemOperation}
               handleRemoveFromCart={handleRemoveFromCart}
               handleGoToNextStep={handleGoToNextStep}

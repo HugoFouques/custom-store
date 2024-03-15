@@ -1,0 +1,46 @@
+.checkout-content {
+  width: 75%;
+
+  h2 {
+    margin-block: 1rem;
+  }
+}
+
+.shipping-content {
+  border: 1px solid rgb(54, 67, 186);
+}
+
+.shipping-header {
+  display: flex;
+  align-items: center;
+  background-color: rgb(54, 67, 186);
+  color: white;
+  padding: 1rem;
+  
+  h3 {
+    flex-grow: 1;
+    width: 60%;
+  }
+}
+
+.shipping-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: 40%;
+  gap: 4rem;
+}
+
+.shipping-address {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  padding: 1rem;
+  background-color: #f5f4f5;
+  color: rgb(16,16,16);
+
+  div {
+    text-transform: capitalize;
+  }
+}
