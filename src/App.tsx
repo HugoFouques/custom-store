@@ -5,13 +5,13 @@ import Navbar from "./components/Navbar";
 import Products from "./components/Products";
 import ProductDetails from "./components/ProductDetails";
 import Login from "./components/Login";
-import Register from "./components/Register";
 import { useEffect, useState } from "react";
 import { Product, CartItem } from "./types/Product";
 import { Operation } from "./types/Operation";
 import { CheckoutStep, getNextStep } from "./types/CheckoutStep";
 import CartPage from "./components/CartPage";
 import { User } from "./types/User";
+import InvoicePage from "./components/InvoicePage";
 
 const App = () => {
   const navigate = useNavigate();
@@ -169,7 +169,7 @@ const App = () => {
           }
         />
         <Route path="/login" element={<Login handleLogin={handleLogin} />} />
-        <Route path="/register" Component={Register} />
+        <Route path="/invoice" Component={InvoicePage} />
       </Routes>
     </div>
   );
