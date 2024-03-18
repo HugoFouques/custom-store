@@ -46,23 +46,25 @@ const Login = ({
     <div className="login-page">
       <form onSubmit={handleFormSubmit} className="login-form-container">
         <h1> Se connecter</h1>
-        <label>
-          Identifiant :
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
-        <label>
-          Mot de passe :
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
+        <input
+          placeholder="Identifiant"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          placeholder="Mot de passe"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <button type="submit">Se connecter</button>
+        <a href="https://fakestoreapi.com/docs#a-login">
+          › Mot de passe oublié
+        </a>
+        <a href="https://fakestoreapi.com/docs#a-login">
+          › Nouveau ? Inscrivez-vous !
+        </a>
         {authError && <div className="error">{authError}</div>}
       </form>
     </div>
