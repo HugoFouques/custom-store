@@ -6,6 +6,7 @@ import box from "../icons/box.svg";
 import { Product } from "../types/Product";
 import StarRating from "./StarRating";
 import { Operation } from "../types/Operation";
+import { displayPrice } from "../helpers/price";
 
 const Products = ({
   products,
@@ -87,11 +88,12 @@ const Products = ({
               <div className="product-img">
                 <img src={product.image} alt={product.description} />
               </div>
-              <div className="product-price">{product.price}€</div>
+              <div className="product-price">{displayPrice(product.price)}</div>
               <h4 className="product-name">{product.title}</h4>
               <StarRating rating={product.rating} />
               <button
                 className="add-to-cart"
+                id="connect-button"
                 onClick={() => handleAddToCart(product.id, "Add")}
               >
                 Ajouter au panier
